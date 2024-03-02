@@ -66,3 +66,10 @@ ggplot(mean_fires_per_cause, aes(x = FIRE_CAUSE, y = mean_fires_per_year, fill =
 # haciendo la
 # tarea
 # un sabado
+
+#sol
+#ballena
+#mono
+#selva
+#cascada
+
