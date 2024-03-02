@@ -59,10 +59,3 @@ ggplot(mean_fires_per_cause, aes(x = FIRE_CAUSE, y = mean_fires_per_year, fill =
   geom_boxplot(width = 2) +
   labs(x = "Fire Cause", y = "Mean Fires per Year") +
   theme_minimal()
-
-
-# Hola
-# amigas
-# ya mismo
-# terminamos
-# !!!!!!
