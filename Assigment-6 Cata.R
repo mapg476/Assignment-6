@@ -76,18 +76,22 @@ bec_elevation <- terra::extract(
   ldb_dem_terrain, sum_area, fun = mean, na.rm = TRUE, bind = TRUE) %>% 
   st_as_sf()
 
+#########
+## 4/4 ##
+#########
+
 # Create a mapview of the BEC vector layer, coloring the polygons by their
 # subzone label.
 
 mapview(clip_bec_ldb,zcol="SUBZONE")
 
 #########
-## 4/4 ##
+## 2/2 ##
 #########
 
 
 ## TOTAL:
 
 ###########
-## 14/15 ##
+## 16/17 ##
 ###########
