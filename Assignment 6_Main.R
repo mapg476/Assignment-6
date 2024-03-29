@@ -28,11 +28,19 @@ fire <- bcdc_query_geodata("e2dadc60-292f-4d98-b42b-56ca9e4fe694", crs = 3005) |
 
 mapview(fire)
 
+#########
+## 4/4 ##
+#########
+
 ## Summarise this dataset to show how many fires occurred by fire year
 
 summary_fires <- fire %>%
   group_by(FIRE_YEAR) %>%
   summarise(fires_count = n())
+
+#########
+## 2/2 ##
+#########
 
 ## Create another data summary that shows the overall breakdown of fire cause
 # in the Lac Du Bois Grasslands Protected Area.
@@ -41,9 +49,17 @@ fire_cause_summary <- fire %>%
   group_by(FIRE_CAUSE) %>%
   summarise(fires_count = n())
 
+#########
+## 2/2 ##
+#########
+
 ## Generate a mapview of the fire points with colors to illustrate the fire cause
 
 mapview(fire, zcol = "FIRE_CAUSE", col.regions = rainbow(length(unique(fire$FIRE_CAUSE))))
+
+#########
+## 2/2 ##
+#########
 
 ## Create a boxplot of the mean fires per year by fire cause, i.e.: the X-axis 
 # should show the different fire causes, and the Y-axis should show the mean 
@@ -51,15 +67,29 @@ mapview(fire, zcol = "FIRE_CAUSE", col.regions = rainbow(length(unique(fire$FIRE
 
 mean_fires_per_cause <- fire %>%
   group_by(FIRE_CAUSE, FIRE_YEAR) %>%
-  summarise(mean_fires = n()) %>%
-  group_by(FIRE_CAUSE) %>%
-  summarise(mean_fires_per_year = mean(mean_fires))
+  summarise(mean_fires = n()) # %>%
+  # group_by(FIRE_CAUSE) %>%
+  # summarise(mean_fires_per_year = mean(mean_fires))
 
-ggplot(mean_fires_per_cause, aes(x = FIRE_CAUSE, y = mean_fires_per_year, fill = FIRE_CAUSE)) +
+ggplot(mean_fires_per_cause, aes(x = FIRE_CAUSE, y = mean_fires, fill = FIRE_CAUSE)) +
   geom_boxplot(width = 2) +
   labs(x = "Fire Cause", y = "Mean Fires per Year") +
   theme_minimal()
 
+
+#########
+## 4/5 ##
+#########
+
+
+## Part 1 total:
+
+###########
+## 14/15 ##
+###########
+
+## You were so close with the summary - mean_fires_per_cause just needed the 
+## first three lines, the other two were not needed. Great job!
 
 # hola
 # estamos
@@ -73,3 +103,17 @@ ggplot(mean_fires_per_cause, aes(x = FIRE_CAUSE, y = mean_fires_per_year, fill =
 #selva
 #cascada
 
+# No merge conflicts! Awesome!
+
+## Part 2 total:
+
+#########
+## 5/5 ##
+#########
+
+
+## TOTAL:
+
+###########
+## 19/20 ##
+###########

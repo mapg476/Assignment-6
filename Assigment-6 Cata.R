@@ -18,6 +18,10 @@ bec <- bcdc_query_geodata("f358a53b-ffde-4830-a325-a5a03ff672c3", crs = 3005) |>
   filter(INTERSECTS(ldb)) |> 
   collect()
 
+#########
+## 4/4 ##
+#########
+
 ##Calculate the total area of each of the resulting features in hectares
 
 #Clip between bec and ldb
@@ -26,6 +30,9 @@ clip_bec_ldb <- st_intersection(bec,ldb)
 #sum of areas
 total_area <- sum(st_area(clip_bec_ldb))/10000
 
+#########
+## 2/2 ##
+#########
 
 # Create a bar plot where the “MAP_LABEL” column is along the X-axis, and 
 # the area is along the Y-axis. Display each bar using different colors.
@@ -41,12 +48,23 @@ ggplot(data = sum_area, aes(x = MAP_LABEL, y = total_area, fill = MAP_LABEL)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_discrete(name = "MAP Label")
 
+#########
+## 4/5 ##
+#########
+
+## You summarized on the column label FEATURE_AREA_SQM, but you should have 
+## created your own column of area and done the summary on that. This is because
+## the FEATURE_AREA_SQM column came from the entire BEC dataset, so the area
+## includes areas beyond our clip. To get an accurate representation of the area
+## in our clip, we must first re-measure the area with st_area().
+
 # Extract the mean elevation of each of the features (you will need to pull in 
 # the DEM from the “cded_terra” function)
 ldb_dem <- cded_terra(ldb)
 ldb_dem
 ldb_dem_albers <- project(ldb_dem,"epsg:3005")
 
+## Creating terrain features was not needed for this assignment!
 plot(ldb_dem_albers)
 terrain_feats <- terrain(ldb_dem_albers, v = c("slope", "aspect", "TPI"))
 plot(terrain_feats)
@@ -62,3 +80,14 @@ bec_elevation <- terra::extract(
 # subzone label.
 
 mapview(clip_bec_ldb,zcol="SUBZONE")
+
+#########
+## 4/4 ##
+#########
+
+
+## TOTAL:
+
+###########
+## 14/15 ##
+###########
